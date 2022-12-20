@@ -2,7 +2,7 @@
 
   class Board
     def initialize
-      knight_moves([0,0], [3,3])
+      
     end
 
     def knight_moves(start, finish)
@@ -12,8 +12,7 @@
     end
 
     def make_tree(start, finish)
-      root = Knight.new(start)
-      queue = [root]
+      queue = [Knight.new(start)]
       current = queue.shift
       until current.position == finish
         current.possible_moves(current.position).each do |move|
@@ -23,7 +22,6 @@
         end
         current = queue.shift
       end
-
       current
     end
 
@@ -36,7 +34,7 @@
       path.unshift(start)
       path
     end
-    
+
     def print_result(path)
       puts "You made it in #{path.length - 1} moves! Here's your path:"
       path.each { |move| p move}
