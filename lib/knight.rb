@@ -8,7 +8,6 @@ class Knight
     @position = position
     @parent = parent
     @children = []
-    # p possible_moves(position)
   end
 
   def possible_moves(position)
