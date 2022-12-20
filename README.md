@@ -11,9 +11,10 @@ by outputting all  squares the knight will stop on along the way
  - Git/Github
 
 ## What I learned:
- - 
+ - Better understanding of data structures, OOP
+ - Specifically, binary search trees and breadth level search
  
 ## Still can improve:
- - 
+ - I needed some help with the logic on the make tree method on this one
 
 Assignment - https://www.theodinproject.com/lessons/ruby-knights-travails
