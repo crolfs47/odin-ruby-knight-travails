@@ -2,11 +2,13 @@
 
 class Knight
   MOVES = [1, 2], [-1, 2], [1, -2], [-1, -2], [2, 1], [-2, 1], [2, -1], [-2, -1]
+  attr_accessor :parent, :children, :position
 
-  def initialize(position)
+  def initialize(position, parent = nil)
     @position = position
+    @parent = parent
     @children = []
-    p possible_moves(position)
+    # p possible_moves(position)
   end
 
   def possible_moves(position)
@@ -20,4 +22,4 @@ class Knight
   end
 end
 
-Knight.new([0,0])
+

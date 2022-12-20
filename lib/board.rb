@@ -1,32 +1,44 @@
   require_relative 'knight'
-  
+
   class Board
     def initialize
+      knight_moves([0,0], [3,3])
     end
 
     def knight_moves(start, finish)
-      if start == finish
+      current = make_tree(start, finish)
+      path = find_path(current, start)
+      print_result(path)
+    end
+
+    def make_tree(start, finish)
+      root = Knight.new(start)
+      queue = [root]
+      current = queue.shift
+      until current.position == finish
+        current.possible_moves(current.position).each do |move|
+          child = Knight.new(move, current)
+          current.children << child
+          queue << child
+        end
+        current = queue.shift
+      end
+
+      current
+    end
+
+    def find_path(current, start)
+      path = []
+      until current.position == start
+        path.unshift(current.position)
+        current = current.parent
+      end
+      path.unshift(start)
+      path
     end
     
-  
+    def print_result(path)
+      puts "You made it in #{path.length - 1} moves! Here's your path:"
+      path.each { |move| p move}
+    end
   end
-
-  # accepts a block and traverses the tree in breadth-level order
-# and yields each node to the provided block, return an array
-# of values if no block is given
-def level_order(&block)
-  return root if root.nil?
-
-  queue = []
-  array = []
-  queue.push(root)
-  while queue.length >= 1
-    visit_node = queue.shift
-    block.call(visit_node) if block_given?
-
-    array.push(visit_node.data)
-    queue.push(visit_node.left_child) unless visit_node.left_child.nil?
-    queue.push(visit_node.right_child) unless visit_node.right_child.nil?
-  end
-  array unless block_given?
-end
